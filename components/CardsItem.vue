@@ -37,7 +37,7 @@ export default {
   computed: {
     fields () {
       const date = new Date(this.card.dob.date)
-      const dateString = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
+      const dateString = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
       return [
         { id: 1, title: 'Hi, my name is', value: `${this.card.name.first} ${this.card.name.last}`, label: 'name' },
         { id: 2, title: 'My email is', value: `${this.card.email}`, label: 'email' },
