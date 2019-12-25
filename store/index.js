@@ -1,4 +1,4 @@
-export const state = ({
+export const state = () => ({
   users: [],
   counts: 1,
   page: 1,
@@ -31,12 +31,13 @@ export const actions = {
       .then((response) => {
         isAppend ? commit('APPEND_USERS', response.data.results) : commit('SET_USERS', response.data.results)
       })
+      .catch(error => console.error(error))
   },
   async updateUsersCounts ({ commit, dispatch }, counts) {
     commit('SET_COUNTS', counts)
     await dispatch('getUsers', {})
   },
-  async nuxtServerInit ({ dispatch }, { req }) {
-    await dispatch('getUsers', {})
+  async nuxtServerInit ({ dispatch }) {
+    await dispatch('getUsers', {}).catch(error => console.error(error))
   }
 }
